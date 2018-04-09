@@ -1,0 +1,272 @@
+[
+  {
+    "code":"001",
+    "description":"Unsupported version",
+    "regexp":"001|Unsupported version",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"002",
+    "description":"Unsupported language",
+    "regexp":"002|Unsupported language",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"003",
+    "description":"Unsupported command",
+    "regexp":"003|Unsupported command",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"004",
+    "description":"Authentication error",
+    "regexp":"004|Authentication error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"005",
+    "description":"Format error",
+    "regexp":"005|Format error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"006",
+    "description":"System malfunction",
+    "regexp":"006|System malfunction",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"007",
+    "description":"Cryptography error",
+    "regexp":"007|Cryptography error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"008",
+    "description":"Timeout",
+    "regexp":"008|Timeout",
+    "mapping":"ResultUnknown"
+  },
+  {
+    "code":"009",
+    "description":"Invalid parameters number",
+    "regexp":"009|Invalid parameters number",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"010",
+    "description":"Zero amount error",
+    "regexp":"010|Zero amount error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"011",
+    "description":"Original transaction not found",
+    "regexp":"011|Original transaction not found",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"012",
+    "description":"Duplicate invoice",
+    "regexp":"012|Duplicate invoice",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"201",
+    "description":"Account not found",
+    "regexp":"201|Account not found",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"203",
+    "description":"Invalid amount",
+    "regexp":"203|Invalid amount",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"204",
+    "description":"Cannot process transaction",
+    "regexp":"204|Cannot process transaction",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"209",
+    "description":"Cannot process transaction",
+    "regexp":"209|Cannot process transaction",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"205",
+    "description":"Insufficient funds",
+    "regexp":"205|Insufficient funds",
+    "mapping":"authorization_failed:insufficient_funds"
+  },
+  {
+    "code":"206",
+    "description":"Wrong information for payment/Customer information format error",
+    "regexp":"206|Wrong information for payment\/Customer information format error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"207",
+    "description":"Invalid terminal identifier",
+    "regexp":"207|Invalid terminal identifier",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"208",
+    "description":"Original transaction not found",
+    "regexp":"208|Original transaction not found",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"301",
+    "description":"Expired card",
+    "regexp":"301|Expired card",
+    "mapping":"authorization_failed:payment_tool_rejected:bank_card_rejected:card_expired"
+  },
+  {
+    "code":"302",
+    "description":"External decline/ Unable to route transaction",
+    "regexp":"302|External decline\/ Unable to route transaction",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"303",
+    "description":"Transaction not permitted to cardholder/Invalid transaction",
+    "regexp":"303|Transaction not permitted to cardholder\/Invalid transaction",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"304",
+    "description":"Transaction not supported by institution",
+    "regexp":"304|Transaction not supported by institution",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"305",
+    "description":"Lost or Stolen card",
+    "regexp":"305|Lost or Stolen card",
+    "mapping":"authorization_failed:account_stolen"
+  },
+  {
+    "code":"306",
+    "description":"Invalid card status",
+    "regexp":"306|Invalid card status",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"307",
+    "description":"Restricted status",
+    "regexp":"307|Restricted status",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"308",
+    "description":"Destination not available/Unable to authorize",
+    "regexp":"308|Destination not available\/Unable to authorize",
+    "mapping":"authorization_failed:payment_tool_rejected:bank_card_rejected:issuer_not_found"
+  },
+  {
+    "code":"309",
+    "description":"Maximum number of times used/uses limit exceeded",
+    "regexp":"309|Maximum number of times used\/uses limit exceeded",
+    "mapping":"authorization_failed:account_limit_exceeded:number"
+  },
+  {
+    "code":"310",
+    "description":"Amount over maximum",
+    "regexp":"310|Amount over maximum",
+    "mapping":"authorization_failed:account_limit_exceeded:amount"
+  },
+  {
+    "code":"311",
+    "description":"Number of PIN tries exceeded",
+    "regexp":"311|Number of PIN tries exceeded",
+    "mapping":"preauthorization_failed"
+  },
+  {
+    "code":"333",
+    "description":"Format error, Error",
+    "regexp":"333|Format error, Error",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"334",
+    "description":"Transaction timeout",
+    "regexp":"334|Transaction timeout",
+    "mapping":"ResultUnknown"
+  },
+  {
+    "code":"396",
+    "description":"System error",
+    "regexp":"396|System error",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"401",
+    "description":"Unable to authorize – call issuer",
+    "regexp":"401|Unable to authorize – call issuer",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"410",
+    "description":"Bad CAVV",
+    "regexp":"410|Bad CAVV",
+    "mapping":"preauthorization_failed"
+  },
+  {
+    "code":"411",
+    "description":"Bad CVV2",
+    "regexp":"411|Bad CVV2",
+    "mapping":"authorization_failed:payment_tool_rejected:bank_card_rejected:cvv_invalid"
+  },
+  {
+    "code":"501",
+    "description":"Expired card – card must be captured",
+    "regexp":"501|Expired card – card must be captured",
+    "mapping":"authorization_failed:payment_tool_rejected:bank_card_rejected:card_expired"
+  },
+  {
+    "code":"502",
+    "description":"External decline Special",
+    "regexp":"502|External decline Special",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "code":"809",
+    "description":"Internal database error",
+    "regexp":"809|Internal database error",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"888",
+    "description":"Access denied",
+    "regexp":"888|Access denied",
+    "mapping":"ResultUnexpected"
+  },
+  {
+    "code":"DECLINED",
+    "description":"Payment system not a present",
+    "regexp":"DECLINED|Payment system not a present",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"DECLINED",
+    "description":"3DS: answerVars not a present",
+    "regexp":"DECLINED|3DS: answerVars not a present",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"DECLINED",
+    "description":"3DS DECLINED payment",
+    "regexp":"DECLINED|3DS DECLINED payment",
+    "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code":"Xid PaReq and PaRes not equals",
+    "description":"Xid PaReq and PaRes not equals",
+    "regexp":"Xid PaReq and PaRes not equals|Xid PaReq and PaRes not equals",
+    "mapping":"authorization_failed:unknown"
+  }
+]

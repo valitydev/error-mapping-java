@@ -1,0 +1,3 @@
+error-mapping:
+  file: classpath:fixture/errors.json
+  patternReason: "'%s' - '%s'" # 'code' - 'description'
