@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ErrorMappingTest {
 
@@ -49,6 +50,12 @@ public class ErrorMappingTest {
                     assertEquals(v, failure.toString());
                 }
         );
+    }
+
+    @Test
+    public void testGetFailureByRegexp() {
+        Failure failure = errorMapping.getFailureByRegexp("AccessDeniedException");
+        assertNotNull(failure);
     }
 
     @Test(expected = RuntimeException.class)

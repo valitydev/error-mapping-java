@@ -268,5 +268,11 @@
     "description":"Xid PaReq and PaRes not equals",
     "regexp":"Xid PaReq and PaRes not equals|Xid PaReq and PaRes not equals",
     "mapping":"authorization_failed:unknown"
+  },
+  {
+    "code": "889",
+    "description": "Access denied",
+    "regexp": "AccessDeniedException",
+    "mapping": "authorization_failed:unknown"
   }
 ]

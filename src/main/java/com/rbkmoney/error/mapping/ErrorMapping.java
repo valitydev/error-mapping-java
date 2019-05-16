@@ -12,6 +12,7 @@ import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import static com.rbkmoney.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
 
@@ -99,6 +100,16 @@ public class ErrorMapping {
         return failure;
     }
 
+    public Failure getFailureByRegexp(String filter) {
+        Error error = findMatchWithPattern(errors, filter);
+
+        checkWoodyError(error);
+
+        Failure failure = toGeneral(error.getMapping());
+        failure.setReason(prepareReason(error.getCode(), error.getDescription()));
+        return failure;
+    }
+
     /**
      * Validate mapping formate
      */
@@ -130,6 +141,17 @@ public class ErrorMapping {
                 .findFirst()
                 .orElseThrow(() -> new ErrorMappingException(
                         String.format("Unexpected error. code %s, description %s", code, description))
+                );
+    }
+
+    private Error findMatchWithPattern(List<Error> errors, String filter) {
+        Objects.requireNonNull(filter);
+
+        return errors.stream()
+                .filter(error -> (filter.matches(error.getRegexp())))
+                .findFirst()
+                .orElseThrow(() -> new ErrorMappingException(
+                        String.format("Unexpected error. regexp %s", filter))
                 );
     }
 
