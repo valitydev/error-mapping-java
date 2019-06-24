@@ -85,10 +85,12 @@ public class ErrorMapping {
 
     /**
      * Get failure by code and description
+     * if code is null check only description and if description is null check only code
      *
      * @param code        String
      * @param description String
      * @return Failure
+     * @exception IllegalArgumentException if code and description null together.
      */
     public Failure getFailureByCodeAndDescription(String code, String description) {
         Error error = findMatchWithPattern(errors, code, description);
@@ -131,17 +133,23 @@ public class ErrorMapping {
      * @return com.rbkmoney.proxy.mocketbank.utils.model.Error
      */
     private Error findMatchWithPattern(List<Error> errors, String code, String description) {
-
-        if (code == null || description == null) {
-            throw new IllegalArgumentException();
-        }
-
         return errors.stream()
-                .filter(error -> (code.matches(error.getRegexp()) && description.matches(error.getRegexp())))
+                .filter(error -> checkError(code, description, error))
                 .findFirst()
                 .orElseThrow(() -> new ErrorMappingException(
                         String.format("Unexpected error. code %s, description %s", code, description))
                 );
+    }
+
+    private boolean checkError(String code, String description, Error error) {
+        if (code != null && description != null) {
+            return code.matches(error.getRegexp()) && description.matches(error.getRegexp());
+        } else if (code != null) {
+            return code.matches(error.getRegexp());
+        } else if (description != null) {
+            return description.matches(error.getRegexp());
+        }
+        throw new IllegalArgumentException();
     }
 
     private Error findMatchWithPattern(List<Error> errors, String filter) {

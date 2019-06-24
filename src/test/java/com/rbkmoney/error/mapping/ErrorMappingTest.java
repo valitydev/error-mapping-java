@@ -2,6 +2,7 @@ package com.rbkmoney.error.mapping;
 
 import com.rbkmoney.damsel.domain.Failure;
 import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,25 @@ public class ErrorMappingTest {
     @Test(expected = ErrorMappingException.class)
     public void testMakeFailureByDescriptionException() {
         errorMapping.getFailureByCodeAndDescription("wrong code", "wrong description");
+    }
+
+    @Test
+    public void testMakeFailureByDescriptionCodeNull() {
+        Failure failure = errorMapping.getFailureByCodeAndDescription(null, "Invalid amount");
+
+        Assert.assertEquals("authorization_failed", failure.getCode());
+    }
+
+    @Test
+    public void testMakeFailureByDescriptionNullCode() {
+        Failure failure = errorMapping.getFailureByCodeAndDescription("203", null);
+
+        Assert.assertEquals("authorization_failed", failure.getCode());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMakeFailureByDescriptionNullCodeNull() {
+        errorMapping.getFailureByCodeAndDescription(null, null);
     }
 
     @Test(expected = WUndefinedResultException.class)
