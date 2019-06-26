@@ -1,0 +1,22 @@
+[
+  {
+    "codeRegex": "001",
+    "mapping": "authorization_failed:operation_blocked"
+  },
+  {
+    "codeRegex":"002",
+    "descriptionRegex":"Invalid .*",
+    "mapping":"authorization_failed:operation_blocked"
+  },
+  {
+    "codeRegex":"003",
+    "descriptionRegex":"Invalid cardholder",
+    "mapping":"authorization_failed:operation_blocked",
+    "state": "payment"
+  },
+  {
+    "codeRegex":"004",
+    "descriptionRegex":"Timeout",
+    "mapping":"ResultUnknown"
+  }
+]

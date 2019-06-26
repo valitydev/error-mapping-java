@@ -30,7 +30,7 @@ error-mapping:
 ### Настройки перед использованием
 
 Добавляем в приложение конфигурационный файл:
-Если хотим, чтобы при запуске проверялись ошибки на корректность, то добавляем `validateMappingFormat()`
+Если хотим, чтобы при запуске проверялись ошибки на корректность, то добавляем `validateMapping()`
 
 ```
 @Configuration
@@ -45,7 +45,7 @@ public class ErrorMappingConfiguration {
     @Bean
     ErrorMapping errorMapping() throws IOException {
         ErrorMapping errorMapping = new ErrorMapping(filePath.getInputStream(), patternReason);
-        errorMapping.validateMappingFormat();
+        errorMapping.validateMapping();
         return errorMapping;
     }
 
@@ -64,80 +64,34 @@ private final ErrorMapping errorMapping;
 
 в коде вызываем:
 ```
-errorMapping.getFailureByCodeAndDescription(code, description)
+errorMapping.mapFailure(code)
+errorMapping.mapFailure(code, description)
+errorMapping.mapFailure(code, description, state)
 ```
 и получаем трифтовую структуру Failure
-
-
 
 ### Пример структуры файла маппинга ошибок (errors.json)
 
 ```
 [
   {
-    "code":"001",
-    "description":"Unsupported version",
-    "regexp":"001|Unsupported version",
-    "mapping":"ResultUnexpected"
+    "codeRegex": "001",
+    "mapping": "authorization_failed:operation_blocked"
   },
   {
-    "code":"008",
-    "description":"Timeout",
-    "regexp":"008|Timeout",
-    "mapping":"ResultUnknown"
-  },
-  {
-    "code":"203",
-    "description":"Invalid amount",
-    "regexp":"203|Invalid amount",
+    "codeRegex":"002",
+    "descriptionRegex":"Invalid .*",
     "mapping":"authorization_failed:operation_blocked"
   },
   {
-    "code":"204",
-    "description":"Cannot process transaction",
-    "regexp":"204|Cannot process transaction",
-    "mapping":"authorization_failed:unknown"
+    "codeRegex":"003",
+    "descriptionRegex":"Invalid cardholder",
+    "mapping":"authorization_failed:operation_blocked",
+    "state": "payment"
   },
   {
-    "code":"205",
-    "description":"Insufficient funds",
-    "regexp":"205|Insufficient funds",
-    "mapping":"authorization_failed:insufficient_funds"
-  },
-  {
-    "code":"301",
-    "description":"Expired card",
-    "regexp":"301|Expired card",
-    "mapping":"authorization_failed:payment_tool_rejected:bank_card_rejected:card_expired"
-  },
-  {
-    "code":"304",
-    "description":"Transaction not supported by institution",
-    "regexp":"304|Transaction not supported by institution",
-    "mapping":"authorization_failed:operation_blocked"
-  },
-  {
-    "code":"305",
-    "description":"Lost or Stolen card",
-    "regexp":"305|Lost or Stolen card",
-    "mapping":"authorization_failed:account_stolen"
-  },
-  {
-    "code":"310",
-    "description":"Amount over maximum",
-    "regexp":"310|Amount over maximum",
-    "mapping":"authorization_failed:account_limit_exceeded:amount"
-  },
-  {
-    "code":"311",
-    "description":"Number of PIN tries exceeded",
-    "regexp":"311|Number of PIN tries exceeded",
-    "mapping":"preauthorization_failed"
-  },
-  {
-    "code":"334",
-    "description":"Transaction timeout",
-    "regexp":"334|Transaction timeout",
+    "codeRegex":"004",
+    "descriptionRegex":"Timeout",
     "mapping":"ResultUnknown"
   }
 ]
