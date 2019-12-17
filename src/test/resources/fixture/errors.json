@@ -183,7 +183,19 @@
     "code":"311",
     "description":"Number of PIN tries exceeded",
     "regexp":"311|Number of PIN tries exceeded",
-    "mapping":"preauthorization_failed"
+    "mapping":"preauthorization_failed:three_ds_failed"
+  },
+  {
+    "code":"312",
+    "description":"3DS timeout",
+    "regexp":"312|3DS timeout",
+    "mapping":"preauthorization_failed:three_ds_not_finished"
+  },
+  {
+    "code":"313",
+    "description":"3DS failed",
+    "regexp":"312|3DS failed",
+    "mapping":"preauthorization_failed:unknown"
   },
   {
     "code":"333",
@@ -213,7 +225,7 @@
     "code":"410",
     "description":"Bad CAVV",
     "regexp":"410|Bad CAVV",
-    "mapping":"preauthorization_failed"
+    "mapping":"preauthorization_failed:three_ds_failed"
   },
   {
     "code":"411",

@@ -12,7 +12,9 @@ public enum StandardError {
     RESULT_UNDEFINED("ResultUnknown"),
     RESULT_UNEXPECTED("ResultUnexpected"),
 
-    PRE_AUTHORIZATION_FAILED("preauthorization_failed"),
+    PRE_AUTHORIZATION_FAILED_UNKNOWN("preauthorization_failed:unknown"),
+    PRE_AUTHORIZATION_FAILED_THREE_DS_NOT_FINISHED("preauthorization_failed:three_ds_not_finished"),
+    PRE_AUTHORIZATION_FAILED_THREE_DS_FAILED("preauthorization_failed:three_ds_failed"),
     REJECTED_BY_INSPECTOR("rejected_by_inspector"),
 
     AUTH_FAILED_UNKNOWN("authorization_failed:unknown"),

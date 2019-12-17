@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>error-mapping-java</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 
     <dependencies>
         <dependency>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.227-2003e8f</version>
+            <version>1.369-f4febef</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
