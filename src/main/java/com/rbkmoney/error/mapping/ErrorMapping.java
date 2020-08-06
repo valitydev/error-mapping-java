@@ -1,6 +1,5 @@
 package com.rbkmoney.error.mapping;
 
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -17,34 +16,16 @@ import java.util.Objects;
 
 import static com.rbkmoney.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
 
-
-/**
- * @author Anatoly Cherkasov
- */
 public class ErrorMapping {
 
-
-    // ------------------------------------------------------------------------
-    // Constants
-    // ------------------------------------------------------------------------
-
     private static final String DEFAULT_PATTERN_REASON = "'%s' - '%s'";
-
 
     /**
      * Pattern for reason failure
      */
     private final String patternReason;
 
-    /**
-     * List of errors
-     */
     private final List<Error> errors;
-
-    // ------------------------------------------------------------------------
-    // Constructors
-    // ------------------------------------------------------------------------
-
 
     public ErrorMapping(InputStream inputStream) {
         this(inputStream, DEFAULT_PATTERN_REASON);
@@ -63,10 +44,6 @@ public class ErrorMapping {
         this.errors = errors;
     }
 
-
-    // ------------------------------------------------------------------------
-    // Public methods
-    // ------------------------------------------------------------------------
 
     public static List<Error> initErrorList(InputStream inputStream, ObjectMapper objectMapper) {
         try {
@@ -88,11 +65,11 @@ public class ErrorMapping {
      * Get failure by code and description
      * if code is null check only description and if description is null check only code
      *
-     * @deprecated
      * @param code        String
      * @param description String
      * @return Failure
-     * @exception IllegalArgumentException if code and description null together.
+     * @throws IllegalArgumentException if code and description null together.
+     * @deprecated
      */
     public Failure getFailureByCodeAndDescription(String code, String description) {
         Error error = findMatchWithPattern(errors, code, description);
@@ -106,9 +83,10 @@ public class ErrorMapping {
 
     /**
      * Find by regexp
-     * @deprecated
-     * @param filter      String
+     *
+     * @param filter String
      * @return Failure
+     * @deprecated
      */
     public Failure getFailureByRegexp(String filter) {
         Error error = findMatchWithPattern(errors, filter);
@@ -120,15 +98,15 @@ public class ErrorMapping {
         return failure;
     }
 
-    public Failure mapFailure(String code){
+    public Failure mapFailure(String code) {
         return mapFailure(code, null, null);
     }
 
-    public Failure mapFailure(String code, String description){
+    public Failure mapFailure(String code, String description) {
         return mapFailure(code, description, null);
     }
 
-    public Failure mapFailure(String code, String description, String state){
+    public Failure mapFailure(String code, String description, String state) {
         Objects.requireNonNull(code, "Code must be set");
         Error error = errors.stream()
                 .filter(e -> matchError(e, code, description, state))
@@ -165,8 +143,7 @@ public class ErrorMapping {
     }
 
     /**
-     * @deprecated
-     * Validate mapping formate
+     * @deprecated Validate mapping formate
      */
     public void validateMappingFormat() {
         errors.forEach(error -> StandardError.findByValue(error.getMapping()));
@@ -230,11 +207,6 @@ public class ErrorMapping {
         return String.format(this.patternReason, code, description);
     }
 
-    /**
-     * Check woody error
-     *
-     * @param error Error
-     */
     private void checkWoodyError(Error error, String description) {
 
         if (error == null) {

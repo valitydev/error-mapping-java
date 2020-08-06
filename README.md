@@ -1,5 +1,7 @@
 # Error mapping
 
+[![Build Status](http://ci.rbkmoney.com/buildStatus/icon?job=rbkmoney_private/error-mapping-java/master)](http://ci.rbkmoney.com/job/rbkmoney_private/job/error-mapping-java/job/master/)
+
 Маппинг ошибок
 
 
@@ -11,7 +13,7 @@
 <dependency>
     <groupId>com.rbkmoney</groupId>
     <artifactId>error-mapping-java</artifactId>
-    <version>1.0.0</version>
+    <version>${error-mapping-java.version}</version>
 </dependency>
 ```
 
@@ -22,6 +24,7 @@ error-mapping:
   file: classpath:fixture/errors.json
   patternReason: "'%s' - '%s'" # 'code' - 'description'
 ```
+
 `file` - путь к файлу с необходимой структурой для маппинга ошибок
 
 `patternReason` - формат шаблона, по умолчанию '%s' - '%s'

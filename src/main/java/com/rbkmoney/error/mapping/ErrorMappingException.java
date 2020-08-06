@@ -3,7 +3,6 @@ package com.rbkmoney.error.mapping;
 /**
  * Handy class for wrapping runtime {@code Exceptions} with a root cause.
  *
- * @author Anatoly Cherkasov
  * @see #getMessage()
  * @see #printStackTrace
  */

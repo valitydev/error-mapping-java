@@ -2,10 +2,6 @@ package com.rbkmoney.error.mapping;
 
 import java.util.Arrays;
 
-
-/**
- * @author Anatoly Cherkasov
- */
 public enum StandardError {
 
     RESULT_UNAVAILABLE("ResourceUnavailable"),
@@ -43,14 +39,12 @@ public enum StandardError {
     AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_NUMBER_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:card_number_invalid"),
     AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_HOLDER_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:card_holder_invalid"),
     AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CVV_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:cvv_invalid"),
-    //AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_UNSUPPORTED("authorization_failed:payment_tool_rejected:bank_card_rejected:card_unsupported"),
     AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_ISSUER_NOT_FOUND("authorization_failed:payment_tool_rejected:bank_card_rejected:issuer_not_found");
-
 
     private final String error;
 
-    StandardError(String action) {
-        this.error = action;
+    StandardError(String error) {
+        this.error = error;
     }
 
     public String getError() {
@@ -58,7 +52,7 @@ public enum StandardError {
     }
 
     public static StandardError findByValue(String value) {
-        return Arrays.stream(StandardError.values()).filter((error) -> error.getError().equals(value))
+        return Arrays.stream(StandardError.values()).filter(error -> error.getError().equals(value))
                 .findFirst()
                 .orElseThrow(()->new IllegalStateException(String.format("Unsupported error '%s' does not match standard", value)));
     }
