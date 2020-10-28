@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.rbkmoney.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
 
@@ -107,19 +108,35 @@ public class ErrorMapping {
     }
 
     public Failure mapFailure(String code, String description, String state) {
-        Objects.requireNonNull(code, "Code must be set");
-        Error error = errors.stream()
-                .filter(e -> matchError(e, code, description, state))
-                .findFirst()
-                .orElseThrow(() -> new ErrorMappingException(
-                        String.format("Error not found. Code %s, description %s, state %s", code, description, state))
-                );
+        Error error = findError(code, description, state);
 
         checkWoodyError(error, description);
 
         Failure failure = TErrorUtil.toGeneral(error.getMapping());
         failure.setReason(prepareReason(code, description));
         return failure;
+    }
+
+    public boolean errorMappingIsExistAndNotWoody(String code, String description) {
+        Optional<Error> error = findErrorInConfig(code, description, null);
+        return error.isPresent()
+                && !StandardError.RESULT_UNDEFINED.getError().equals(error.get().getMapping())
+                && !StandardError.RESULT_UNEXPECTED.getError().equals(error.get().getMapping())
+                && !StandardError.RESULT_UNAVAILABLE.getError().equals(error.get().getMapping());
+    }
+
+    private Error findError(String code, String description, String state) {
+        return findErrorInConfig(code, description, state)
+                .orElseThrow(() -> new ErrorMappingException(
+                        String.format("Error not found. Code %s, description %s, state %s", code, description, state))
+                );
+    }
+
+    private Optional<Error> findErrorInConfig(String code, String description, String state) {
+        Objects.requireNonNull(code, "Code must be set");
+        return errors.stream()
+                .filter(e -> matchError(e, code, description, state))
+                .findFirst();
     }
 
     private boolean matchNullableStrings(String str, String regex) {

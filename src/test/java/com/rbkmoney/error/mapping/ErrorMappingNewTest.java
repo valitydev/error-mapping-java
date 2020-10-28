@@ -2,17 +2,12 @@ package com.rbkmoney.error.mapping;
 
 import com.rbkmoney.damsel.domain.Failure;
 import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ErrorMappingNewTest {
 
@@ -59,11 +54,17 @@ public class ErrorMappingNewTest {
     }
 
     @Test
-    public void testMapFailureCodeDescState(){
+    public void testMapFailureCodeDescState() {
         Failure failure = errorMapping.mapFailure("003", "Invalid cardholder", "payment");
         assertNotNull(failure);
         assertEquals(failure.getReason(), "'003' - 'Invalid cardholder'");
         assertEquals("operation_blocked", failure.getSub().getCode());
+    }
+
+    @Test
+    public void testErrorMappingIsExist() {
+        assertTrue(errorMapping.errorMappingIsExistAndNotWoody("003", "Invalid cardholder"));
+        assertFalse(errorMapping.errorMappingIsExistAndNotWoody("0035", "Invalid cardholder test"));
     }
 
 }
