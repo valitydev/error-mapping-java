@@ -75,7 +75,7 @@ public class ErrorMapping {
     public Failure getFailureByCodeAndDescription(String code, String description) {
         Error error = findMatchWithPattern(errors, code, description);
 
-        checkWoodyError(error, description);
+        checkWoodyError(error, code, description);
 
         Failure failure = toGeneral(error.getMapping());
         failure.setReason(prepareReason(code, description));
@@ -92,7 +92,7 @@ public class ErrorMapping {
     public Failure getFailureByRegexp(String filter) {
         Error error = findMatchWithPattern(errors, filter);
 
-        checkWoodyError(error, null);
+        checkWoodyError(error, null,null);
 
         Failure failure = toGeneral(error.getMapping());
         failure.setReason(prepareReason(error.getCode(), error.getDescription()));
@@ -110,7 +110,7 @@ public class ErrorMapping {
     public Failure mapFailure(String code, String description, String state) {
         Error error = findError(code, description, state);
 
-        checkWoodyError(error, description);
+        checkWoodyError(error, code, description);
 
         Failure failure = TErrorUtil.toGeneral(error.getMapping());
         failure.setReason(prepareReason(code, description));
@@ -224,24 +224,22 @@ public class ErrorMapping {
         return String.format(this.patternReason, code, description);
     }
 
-    private void checkWoodyError(Error error, String description) {
+    private void checkWoodyError(Error error, String code, String description) {
 
         if (error == null) {
             throw new IllegalArgumentException("Error not found");
         }
 
         if (StandardError.RESULT_UNDEFINED.getError().equals(error.getMapping())) {
-            throw new WUndefinedResultException("Undefined error " + error + (error.getDescriptionRegex() == null ? "" : "; description = " + description));
+            throw new WUndefinedResultException(String.format("%s, code = %s, description = %s", error, code, description));
         }
 
         if (StandardError.RESULT_UNEXPECTED.getError().equals(error.getMapping())) {
-            throw new RuntimeException("Unexpected error " + error + (error.getDescriptionRegex() == null ? "" : "; description = " + description));
+            throw new RuntimeException(String.format("Unexpected error %s, code = %s, description = %s", error, code, description));
         }
 
         if (StandardError.RESULT_UNAVAILABLE.getError().equals(error.getMapping())) {
-            throw new WUnavailableResultException("Unavailable error " + error + (error.getDescriptionRegex() == null ? "" : "; description = " + description));
+            throw new WUnavailableResultException(String.format("%s, code = %s, description = %s", error, code, description));
         }
-
     }
-
 }
