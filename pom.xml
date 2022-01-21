@@ -5,19 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.rbkmoney</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.5</version>
+        <groupId>dev.vality</groupId>
+        <artifactId>library-parent-pom</artifactId>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>error-mapping-java</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.0</version>
 
     <properties>
-        <woody.version>[1.1.21,)</woody.version>
-        <damsel.version>1.439-b18f037</damsel.version>
-        <serializer.version>[0.6.11,)</serializer.version>
-        <lombok.version>1.18.8</lombok.version>
+        <woody.version>1.0.4</woody.version>
+        <damsel.version>1.543-98ca5c1</damsel.version>
+        <serializer.version>0.0.1</serializer.version>
+        <lombok.version>1.18.22</lombok.version>
         <slf4j-simple.version>1.7.25</slf4j-simple.version>
         <junit.version>4.12</junit.version>
         <jackson.version>2.11.2</jackson.version>
@@ -25,7 +25,7 @@
 
     <name>error-mapping-java</name>
     <description>Error mapping for thrift adapter</description>
-    <url>https://github.com/rbkmoney/error-mapping-java</url>
+    <url>https://github.com/valitydev/error-mapping-java</url>
 
     <licenses>
         <license>
@@ -34,36 +34,27 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <name>Anatoly Cherkasov</name>
-            <email>a.cherkasov@rbkmoney.com</email>
-            <organization>RBK.money</organization>
-            <organizationUrl>https://rbk.money</organizationUrl>
-        </developer>
-    </developers>
-
     <scm>
-        <connection>scm:git:git://github.com/rbkmoney/error-mapping-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com/rbkmoney/error-mapping-java.git</developerConnection>
-        <url>https://github.com/rbkmoney/error-mapping-java/tree/master</url>
+        <connection>scm:git:git://github.com/valitydev/error-mapping-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com/valitydev/error-mapping-java.git</developerConnection>
+        <url>https://github.com/valitydev/error-mapping-java/tree/master</url>
     </scm>
 
     <dependencies>
         <dependency>
-            <groupId>com.rbkmoney.woody</groupId>
+            <groupId>dev.vality.woody</groupId>
             <artifactId>woody-thrift</artifactId>
             <version>${woody.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.rbkmoney</groupId>
+            <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
             <version>${damsel.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.rbkmoney.geck</groupId>
+            <groupId>dev.vality.geck</groupId>
             <artifactId>serializer</artifactId>
             <version>${serializer.version}</version>
             <scope>provided</scope>

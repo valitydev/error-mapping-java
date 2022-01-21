@@ -1,7 +1,7 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
-import com.rbkmoney.damsel.domain.Failure;
-import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
+import dev.vality.damsel.domain.Failure;
+import dev.vality.woody.api.flow.error.WUndefinedResultException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +59,8 @@ public class ErrorMappingTest {
     @Test
     public void testGetFailureByCodeAndDescription() {
         Map<String, String> map = new HashMap<>();
-        map.put("DECLINED", "Failure(code:authorization_failed, reason:'DECLINED' - 'DECLINED', sub:SubFailure(code:unknown))");
+        map.put("DECLINED",
+                "Failure(code:authorization_failed, reason:'DECLINED' - 'DECLINED', sub:SubFailure(code:unknown))");
         map.put("209", "Failure(code:authorization_failed, reason:'209' - '209', sub:SubFailure(code:unknown))");
 
         map.forEach((k, v) -> {

@@ -1,13 +1,13 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rbkmoney.damsel.domain.Failure;
-import com.rbkmoney.geck.serializer.kit.tbase.TErrorUtil;
-import com.rbkmoney.woody.api.flow.error.WUnavailableResultException;
-import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
+import dev.vality.damsel.domain.Failure;
+import dev.vality.geck.serializer.kit.tbase.TErrorUtil;
+import dev.vality.woody.api.flow.error.WUnavailableResultException;
+import dev.vality.woody.api.flow.error.WUndefinedResultException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.rbkmoney.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
+import static dev.vality.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
 
 public class ErrorMapping {
 
@@ -70,8 +70,8 @@ public class ErrorMapping {
      * @param description String
      * @return Failure
      * @throws IllegalArgumentException if code and description null together.
-     * @deprecated
      */
+    @Deprecated
     public Failure getFailureByCodeAndDescription(String code, String description) {
         Error error = findMatchWithPattern(errors, code, description);
 
@@ -87,8 +87,8 @@ public class ErrorMapping {
      *
      * @param filter String
      * @return Failure
-     * @deprecated
      */
+    @Deprecated
     public Failure getFailureByRegexp(String filter) {
         Error error = findMatchWithPattern(errors, filter);
 
@@ -154,9 +154,9 @@ public class ErrorMapping {
     }
 
     private boolean matchError(Error error, String code, String description, String state) {
-        return code.matches(error.getCodeRegex()) &&
-                matchNullableStrings(description, error.getDescriptionRegex()) &&
-                equalsNullableStrings(state, error.getState());
+        return code.matches(error.getCodeRegex())
+                && matchNullableStrings(description, error.getDescriptionRegex())
+                && equalsNullableStrings(state, error.getState());
     }
 
     /**
@@ -177,7 +177,7 @@ public class ErrorMapping {
     /**
      * Find match code or description by pattern
      *
-     * @param errors      List<Error>
+     * @param errors      List of Errors
      * @param code        String
      * @param description String
      * @return com.rbkmoney.proxy.mocketbank.utils.model.Error
@@ -191,17 +191,6 @@ public class ErrorMapping {
                 );
     }
 
-    private boolean checkError(String code, String description, Error error) {
-        if (code != null && description != null) {
-            return code.matches(error.getRegexp()) && description.matches(error.getRegexp());
-        } else if (code != null) {
-            return code.matches(error.getRegexp());
-        } else if (description != null) {
-            return description.matches(error.getRegexp());
-        }
-        throw new IllegalArgumentException();
-    }
-
     private Error findMatchWithPattern(List<Error> errors, String filter) {
         Objects.requireNonNull(filter);
 
@@ -211,6 +200,17 @@ public class ErrorMapping {
                 .orElseThrow(() -> new ErrorMappingException(
                         String.format("Unexpected error. regexp %s", filter))
                 );
+    }
+
+    private boolean checkError(String code, String description, Error error) {
+        if (code != null && description != null) {
+            return code.matches(error.getRegexp()) && description.matches(error.getRegexp());
+        } else if (code != null) {
+            return code.matches(error.getRegexp());
+        } else if (description != null) {
+            return description.matches(error.getRegexp());
+        }
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -231,15 +231,21 @@ public class ErrorMapping {
         }
 
         if (StandardError.RESULT_UNDEFINED.getError().equals(error.getMapping())) {
-            throw new WUndefinedResultException(String.format("%s, code = %s, description = %s", error, code, description));
+            throw new WUndefinedResultException(
+                    String.format("%s, code = %s, description = %s", error, code, description)
+            );
         }
 
         if (StandardError.RESULT_UNEXPECTED.getError().equals(error.getMapping())) {
-            throw new RuntimeException(String.format("Unexpected error %s, code = %s, description = %s", error, code, description));
+            throw new RuntimeException(
+                    String.format("Unexpected error %s, code = %s, description = %s", error, code, description)
+            );
         }
 
         if (StandardError.RESULT_UNAVAILABLE.getError().equals(error.getMapping())) {
-            throw new WUnavailableResultException(String.format("%s, code = %s, description = %s", error, code, description));
+            throw new WUnavailableResultException(
+                    String.format("%s, code = %s, description = %s", error, code, description)
+            );
         }
     }
 }
