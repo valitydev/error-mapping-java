@@ -19,7 +19,7 @@
         <serializer.version>[0.6.11,)</serializer.version>
         <lombok.version>1.18.8</lombok.version>
         <slf4j-simple.version>1.7.25</slf4j-simple.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jackson.version>2.11.2</jackson.version>
     </properties>
 
