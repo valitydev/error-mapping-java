@@ -1,7 +1,5 @@
 # Error mapping
 
-[![Build Status](http://ci.rbkmoney.com/buildStatus/icon?job=rbkmoney_private/error-mapping-java/master)](http://ci.rbkmoney.com/job/rbkmoney_private/job/error-mapping-java/job/master/)
-
 Маппинг ошибок
 
 
@@ -11,7 +9,7 @@
 
 ```
 <dependency>
-    <groupId>com.rbkmoney</groupId>
+    <groupId>dev.vality</groupId>
     <artifactId>error-mapping-java</artifactId>
     <version>${error-mapping-java.version}</version>
 </dependency>
