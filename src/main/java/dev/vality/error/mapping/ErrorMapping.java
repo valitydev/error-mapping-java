@@ -180,7 +180,7 @@ public class ErrorMapping {
      * @param errors      List of Errors
      * @param code        String
      * @param description String
-     * @return com.rbkmoney.proxy.mocketbank.utils.model.Error
+     * @return dev.vality.error.mapping.Error
      */
     private Error findMatchWithPattern(List<Error> errors, String code, String description) {
         return errors.stream()
