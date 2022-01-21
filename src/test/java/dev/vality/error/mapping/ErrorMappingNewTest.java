@@ -1,7 +1,7 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
-import com.rbkmoney.damsel.domain.Failure;
-import com.rbkmoney.woody.api.flow.error.WUndefinedResultException;
+import dev.vality.damsel.domain.Failure;
+import dev.vality.woody.api.flow.error.WUndefinedResultException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +46,7 @@ public class ErrorMappingNewTest {
     }
 
     @Test
-    public void testMapFailureCodeDesc(){
+    public void testMapFailureCodeDesc() {
         Failure failure = errorMapping.mapFailure("002", "Invalid amount");
         assertNotNull(failure);
         assertEquals(failure.getReason(), "'002' - 'Invalid amount'");

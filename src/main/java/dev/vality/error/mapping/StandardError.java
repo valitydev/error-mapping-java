@@ -1,4 +1,4 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
 import java.util.Arrays;
 
@@ -35,11 +35,16 @@ public enum StandardError {
     AUTH_FAILED_PROVIDER_EXCEEDED_UNKNOWN("authorization_failed:provider_limit_exceeded:unknown"),
 
     AUTH_FAILED_PAYMENT_TOOL_UNKNOWN("authorization_failed:payment_tool_rejected:unknown"),
-    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_EXPIRED("authorization_failed:payment_tool_rejected:bank_card_rejected:card_expired"),
-    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_NUMBER_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:card_number_invalid"),
-    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_HOLDER_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:card_holder_invalid"),
-    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CVV_INVALID("authorization_failed:payment_tool_rejected:bank_card_rejected:cvv_invalid"),
-    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_ISSUER_NOT_FOUND("authorization_failed:payment_tool_rejected:bank_card_rejected:issuer_not_found");
+    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_EXPIRED(
+            "authorization_failed:payment_tool_rejected:bank_card_rejected:card_expired"),
+    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_NUMBER_INVALID(
+            "authorization_failed:payment_tool_rejected:bank_card_rejected:card_number_invalid"),
+    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CARD_HOLDER_INVALID(
+            "authorization_failed:payment_tool_rejected:bank_card_rejected:card_holder_invalid"),
+    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_CVV_INVALID(
+            "authorization_failed:payment_tool_rejected:bank_card_rejected:cvv_invalid"),
+    AUTH_FAILED_PAYMENT_TOOL_BANK_CARD_ISSUER_NOT_FOUND(
+            "authorization_failed:payment_tool_rejected:bank_card_rejected:issuer_not_found");
 
     private final String error;
 
@@ -54,7 +59,9 @@ public enum StandardError {
     public static StandardError findByValue(String value) {
         return Arrays.stream(StandardError.values()).filter(error -> error.getError().equals(value))
                 .findFirst()
-                .orElseThrow(()->new IllegalStateException(String.format("Unsupported error '%s' does not match standard", value)));
+                .orElseThrow(() -> new IllegalStateException(
+                        String.format("Unsupported error '%s' does not match standard", value))
+                );
     }
 
 }

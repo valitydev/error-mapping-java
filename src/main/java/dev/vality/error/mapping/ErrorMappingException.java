@@ -1,4 +1,4 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
 /**
  * Handy class for wrapping runtime {@code Exceptions} with a root cause.

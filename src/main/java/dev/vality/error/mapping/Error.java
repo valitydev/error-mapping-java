@@ -1,4 +1,4 @@
-package com.rbkmoney.error.mapping;
+package dev.vality.error.mapping;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,19 +13,13 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Error {
 
-    /**
-     * @deprecated
-     */
+    @Deprecated
     private String code;
 
-    /**
-     * @deprecated
-     */
+    @Deprecated
     private String description;
 
-    /**
-     * @deprecated
-     */
+    @Deprecated
     private String regexp;
 
     private String codeRegex;
