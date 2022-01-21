@@ -18,9 +18,9 @@
         <damsel.version>1.543-98ca5c1</damsel.version>
         <serializer.version>0.0.1</serializer.version>
         <lombok.version>1.18.22</lombok.version>
-        <slf4j-simple.version>1.7.25</slf4j-simple.version>
-        <junit.version>4.12</junit.version>
-        <jackson.version>2.11.2</jackson.version>
+        <slf4j-simple.version>1.7.33</slf4j-simple.version>
+        <junit.version>4.13.2</junit.version>
+        <jackson.version>2.13.1</jackson.version>
     </properties>
 
     <name>error-mapping-java</name>
