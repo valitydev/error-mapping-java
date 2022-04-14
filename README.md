@@ -1,5 +1,6 @@
 # Error mapping
 
+UPD.: archived, use https://github.com/valitydev/adapter-common-lib
 Маппинг ошибок
 
 

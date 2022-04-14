@@ -6,6 +6,7 @@ package dev.vality.error.mapping;
  * @see #getMessage()
  * @see #printStackTrace
  */
+@Deprecated
 public class ErrorMappingException extends RuntimeException {
 
     /**
