@@ -2,6 +2,7 @@ package dev.vality.error.mapping;
 
 import java.util.Arrays;
 
+@Deprecated
 public enum StandardError {
 
     RESULT_UNAVAILABLE("ResourceUnavailable"),

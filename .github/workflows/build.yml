@@ -8,3 +8,4 @@ on:
 jobs:
   build:
     uses: valitydev/base-workflow/.github/workflows/maven-library-build.yml@v1
+    

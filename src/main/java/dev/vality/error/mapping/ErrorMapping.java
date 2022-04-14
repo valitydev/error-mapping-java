@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import static dev.vality.geck.serializer.kit.tbase.TErrorUtil.toGeneral;
 
+@Deprecated
 public class ErrorMapping {
 
     private static final String DEFAULT_PATTERN_REASON = "'%s' - '%s'";
