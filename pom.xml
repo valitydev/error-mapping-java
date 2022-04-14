@@ -15,12 +15,12 @@
 
     <properties>
         <woody.version>1.0.4</woody.version>
-        <damsel.version>1.543-98ca5c1</damsel.version>
+        <damsel.version>1.558-3efe7df</damsel.version>
         <serializer.version>0.0.1</serializer.version>
         <lombok.version>1.18.22</lombok.version>
-        <slf4j-simple.version>1.7.33</slf4j-simple.version>
+        <slf4j-simple.version>1.7.36</slf4j-simple.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.13.2.2</jackson.version>
     </properties>
 
     <name>error-mapping-java</name>
