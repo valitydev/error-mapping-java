@@ -20,7 +20,7 @@
         <lombok.version>1.18.22</lombok.version>
         <slf4j-simple.version>1.7.33</slf4j-simple.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.13.2.1</jackson.version>
     </properties>
 
     <name>error-mapping-java</name>
